@@ -3,7 +3,7 @@
 # Useful for debugging.
 # Pre-requisites:
 # 1) gcloud auth application-default login
-# 2) gcloud config set core/proejct <your-project>
+# 2) gcloud config set core/project <your-project>
 
 IMAGE_TAG='gclb-test'
 
