@@ -30,10 +30,10 @@ You may also modify, package and deploy this tool to run on other platforms, suc
 This tool uses a YAML config file (`app/config.yaml`) to discover the load balancers to manage, the certificate authorities to use, and what certificates should look like. It contains a list of *rotation profiles*, each of which describes a single certificate which must be maintained.
 
 Each rotation profile consists of:
-1. A load balancer endpoint whose certificates will be kept rotated.
-1. A Certificate Authority that will issue new certificates.
-1. How long new certificates should be valid for (in days).
-1. A threshold of each certificates' lifetime at which to rotate certificates.
+1. A load balancer endpoint whose certificates will be rotated.
+1. A Certificate Authority (CA) that will issue new certificates.
+1. The time duration (in days) for which the new certificates should be valid.
+1. A threshold of each certificate's lifetime at which it is rotated.
      For example, if a certificate's lifetime is 30 days and its rotation threshold is `0.5`, it will be considered eligible for rotation when 15 days have passed since it was issued.
 
 ## IAM roles
@@ -47,5 +47,7 @@ The following features are currently not supported:
 
 - Multiple certificates for a single load balancer. This tool currently only looks at the first certificate and replaces that.
 - Publicly-trusted certificates. To automate rotation of publicly-trusted certificates, see [Using Google-managed SSL certificates](https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs).
+
+## Community contributions
 
 Pull requests are welcome.
