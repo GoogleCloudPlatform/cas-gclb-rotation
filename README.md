@@ -45,9 +45,9 @@ The account used by the rotation server must have at least the following IAM rol
 
 The following features are currently not supported:
 
-- Multiple certificates for a single load balancer. This tool currently only looks at the first certificate and replaces that.
+- Multiple certificates for a single load balancer. Currently, this tool only looks at the first certificate and replaces that.
 - Publicly-trusted certificates. To automate rotation of publicly-trusted certificates, see [Using Google-managed SSL certificates](https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs).
 
 ## Community contributions
 
-Pull requests are welcome.
+If you would like to contribute to this project, start by checking the existing [issues](../../issues) and [pull requests](../../pulls) to see if someone else has already suggested a similar edit, idea or question. If you do not see a similar idea already listed, feel free to create one.
