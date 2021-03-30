@@ -1,6 +1,6 @@
 # GCLB rotation tool for Certificate Authority Service
 
-This is a sample solution that periodically checks the status of SSL proxy load balancers and rotates their certificates (using a configured CA on [Certificate Authority Service](https://cloud.google.com/certificate-authority-service/docs)) when they reach a given percentage of their lifetime.
+This is a sample solution that periodically checks the status of Google Cloud internal or external HTTP(S) load balancers and rotates their certificates (using a configured CA on [Certificate Authority Service](https://cloud.google.com/certificate-authority-service/docs)) when they reach a given percentage of their lifetime.
 
 **Note: This solution is not an official product and is not supported by Google, but is a sample provided for your reference. Direct use of this code in production is discouraged, but you may fork, modify and run this code as needed (subject to the license).**
 
@@ -30,7 +30,7 @@ You may also modify, package and deploy this tool to run on other platforms, suc
 This tool uses a YAML config file (`app/config.yaml`) to discover the load balancers to manage, the certificate authorities to use, and what certificates should look like. It contains a list of *rotation profiles*, each of which describes a single certificate which must be maintained.
 
 Each rotation profile consists of:
-1. A load balancer endpoint whose certificates will be rotated.
+1. A load balancer instance whose certificates will be rotated.
 1. A Certificate Authority (CA) that will issue new certificates.
 1. The time duration (in days) for which the new certificates should be valid.
 1. A threshold of each certificate's lifetime at which it is rotated.
