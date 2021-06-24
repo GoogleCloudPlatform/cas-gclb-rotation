@@ -31,7 +31,7 @@ def buildContext() -> AppContext:
     """Builds the config and GCP clients. Intended to be called at initialization time."""
     return AppContext(config=loadConfig(),
                       computeClient=discovery.build('compute', 'v1'),
-                      casClient=discovery.build('privateca', 'v1beta1'))
+                      casClient=discovery.build('privateca', 'v1'))
 
 
 def runAllProfiles(context: AppContext) -> None:
