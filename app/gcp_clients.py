@@ -177,6 +177,8 @@ class CertificateAuthorityServiceClient:
         self.project = profile.issuingCa.project
         self.location = profile.issuingCa.location
         self.ca_id = profile.issuingCa.name
+        ## TODO add POOL variable 
+        self.ca_pool = "pool_001"
 
     def issueNewCert(self, cert_id: str, public_key: bytes) -> List[str]:
         cert_body = {
@@ -192,6 +194,9 @@ class CertificateAuthorityServiceClient:
                         'dnsNames': [self.profile.dnsName],
                     }
                 },
+                ## TODO replace -> Mananged Resource -> specify values manually 
+                ## https://cloud.devsite.corp.google.com/certificate-authority-service/docs/certificate-profile#end-server-tls
+                ## x509 Config -> https://cloud.devsite.corp.google.com/certificate-authority-service/docs/internal/reference/rest/v1/CertificateConfig  
                 'reusableConfig': {
                     'reusableConfig':
                     'projects/privateca-data/locations/{}/reusableConfigs/leaf-server-tls'
@@ -200,8 +205,8 @@ class CertificateAuthorityServiceClient:
             }
         }
 
-        parent = 'projects/{}/locations/{}/certificateAuthorities/{}'.format(
-            self.project, self.location, self.ca_id)
+        parent = 'projects/{}/locations/{}/caPools/{}/certificateAuthorities/{}'.format(
+            self.project, self.location, self.ca_pool, self.ca_id)
         request_id = str(uuid.uuid4())
 
         logging.info('Creating new CAS certificate..')

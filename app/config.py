@@ -38,6 +38,7 @@ class SimpleResource:
 class RotationProfile:
     """Describes the entity to be rotated."""
     lb: SimpleResource
+    ##TODO issueCaPool
     issuingCa: SimpleResource
     # TODO: consider extracting these fields into a CertificateConfig
     dnsName: str
@@ -104,7 +105,7 @@ def _parseDataClass(raw_values: dict, cls: type) -> Any:
     return cls(**values)
 
 
-def loadConfig(filename: str = 'config.yaml') -> AppConfig:
+def loadConfig(filename: str = '/home/isaackkaranja/cert-auth-python/certificate_authority/app/config.yaml') -> AppConfig:
     """Loads an AppConfig from the given YAML file."""
     with open(filename) as file:
         config_dict = yaml.safe_load(file)
