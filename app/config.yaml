@@ -15,23 +15,23 @@
 profiles:
 - dnsName: lb-cert.isaack.io
   lb:
-    project: pytorch-tpu-nfs
+    project: foo
     location: us-central1
-    name: loadbal-cert-target-proxy-2
+    name: regional-test-lb-target-proxy2
   issuingPool:
-    project: pytorch-tpu-nfs
+    project: foo
     location: us-central1
-    name: pool_001
+    name: ca-pool-us-central
   lifetimeDays: 30
   rotationThreshold: 0.9999
-# - dnsName: us-central1.joonix.net
-#   lb:
-#     project: pytorch-tpu-nfs
-#     location: us-central1
-#     name: regional-test-lb-target-proxy
-#   issuingCa:
-#     project: pytorch-tpu-nfs
-#     location: us-central1
-#     name: server-tls-2
-#   lifetimeDays: 30
-#   rotationThreshold: 0.9999
+- dnsName: lb-cert.isaack.io
+  lb:
+    project: foo
+    location: global
+    name: global-test-lb-target-proxy
+  issuingPool:
+    project: foo
+    location: us-central1
+    name: ca-pool-us-central
+  lifetimeDays: 30
+  rotationThreshold: 0.9999
