@@ -174,11 +174,10 @@ class CertificateAuthorityServiceClient:
                  profile: RotationProfile):
         self.discovery_client = discovery_client
         self.profile = profile
-        self.project = profile.issuingCa.project
-        self.location = profile.issuingCa.location
-        self.ca_id = profile.issuingCa.name
-        ## TODO add POOL variable 
-        self.ca_pool = "pool_001"
+        self.project = profile.issuingPool.project
+        self.location = profile.issuingPool.location
+        self.caPool = profile.issuingPool.name
+    
 
     def issueNewCert(self, cert_id: str, public_key: bytes) -> List[str]:
         cert_body = {
@@ -186,32 +185,34 @@ class CertificateAuthorityServiceClient:
             'config': {
                 'publicKey': {
                     'key': serializePemBytesForJson(public_key),
-                    'type': 'PEM_RSA_KEY',
+                    'format': 'PEM',
                 },
                 'subjectConfig': {
-                    'commonName': self.profile.dnsName,
+                    'subject': {
+                        'commonName': self.profile.dnsName,
+                    },
                     'subjectAltName': {
                         'dnsNames': [self.profile.dnsName],
                     }
                 },
-                ## TODO replace -> Mananged Resource -> specify values manually 
-                ## https://cloud.devsite.corp.google.com/certificate-authority-service/docs/certificate-profile#end-server-tls
-                ## x509 Config -> https://cloud.devsite.corp.google.com/certificate-authority-service/docs/internal/reference/rest/v1/CertificateConfig  
-                'reusableConfig': {
-                    'reusableConfig':
-                    'projects/privateca-data/locations/{}/reusableConfigs/leaf-server-tls'
-                    .format(self.location),
+                'x509Config': {
+                    'caOptions': {
+                        'isCa': 'false'
+                        },
+                    'keyUsage': {
+                        'baseKeyUsage': {},
+                        },
+                    },
                 }
-            }
         }
 
-        parent = 'projects/{}/locations/{}/caPools/{}/certificateAuthorities/{}'.format(
-            self.project, self.location, self.ca_pool, self.ca_id)
+        parent = 'projects/{}/locations/{}/caPools/{}'.format(
+            self.project, self.location, self.caPool)
         request_id = str(uuid.uuid4())
 
         logging.info('Creating new CAS certificate..')
         certsClient = self.discovery_client.projects().locations(
-        ).certificateAuthorities().certificates()
+        ).caPools().certificates()
         cert = logAndExecute(certsClient.create(
             parent=parent,
             body=cert_body,

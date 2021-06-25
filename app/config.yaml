@@ -18,10 +18,10 @@ profiles:
     project: pytorch-tpu-nfs
     location: us-central1
     name: loadbal-cert-target-proxy-2
-  issuingCa:
+  issuingPool:
     project: pytorch-tpu-nfs
     location: us-central1
-    name: isaack-io
+    name: pool_001
   lifetimeDays: 30
   rotationThreshold: 0.9999
 # - dnsName: us-central1.joonix.net
