@@ -197,13 +197,19 @@ class CertificateAuthorityServiceClient:
                 },
                 'x509Config': {
                     'caOptions': {
-                        'isCa': 'false'
-                        },
+                        'isCa': false
+                    },
                     'keyUsage': {
-                        'baseKeyUsage': {},
+                        'baseKeyUsage': {
+                            'digitalSignature': true,
+                            'keyEncipherment': true,
+                        },
+                        'extendedKeyUsage': {
+                            'serverAuth': true,
                         },
                     },
                 }
+            }
         }
 
         parent = 'projects/{}/locations/{}/caPools/{}'.format(
