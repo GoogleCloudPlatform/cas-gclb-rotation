@@ -13,25 +13,25 @@
 # limitations under the License.
 
 profiles:
-- dnsName: example.com
-  lb:
-    project: foo
-    location: global
-    name: my-ssl-lb-target-proxy
-  issuingCa:
-    project: foo
-    location: us-west1
-    name: server-tls-2
-  lifetimeDays: 30
-  rotationThreshold: 0.9999
-- dnsName: us-central1.joonix.net
+- dnsName: lb-cert.isaack.io
   lb:
     project: foo
     location: us-central1
-    name: regional-test-lb-target-proxy
-  issuingCa:
+    name: regional-test-lb-target-proxy2
+  issuingPool:
     project: foo
-    location: us-west1
-    name: server-tls-2
+    location: us-central1
+    name: ca-pool-us-central
+  lifetimeDays: 30
+  rotationThreshold: 0.9999
+- dnsName: lb-cert.isaack.io
+  lb:
+    project: foo
+    location: global
+    name: global-test-lb-target-proxy
+  issuingPool:
+    project: foo
+    location: us-central1
+    name: ca-pool-us-central
   lifetimeDays: 30
   rotationThreshold: 0.9999
