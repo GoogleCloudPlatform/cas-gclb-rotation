@@ -38,7 +38,6 @@ class SimpleResource:
 class RotationProfile:
     """Describes the entity to be rotated."""
     lb: SimpleResource
-    ##TODO issueCaPool
     issuingPool: SimpleResource
     # TODO: consider extracting these fields into a CertificateConfig
     dnsName: str
