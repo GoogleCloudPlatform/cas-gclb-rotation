@@ -13,7 +13,7 @@
 # limitations under the License.
 
 profiles:
-- dnsName: lb-cert.isaack.io
+- dnsName: lb-cert.joonix.net
   lb:
     project: foo
     location: us-central1
@@ -24,7 +24,7 @@ profiles:
     name: ca-pool-us-central
   lifetimeDays: 30
   rotationThreshold: 0.9999
-- dnsName: lb-cert.isaack.io
+- dnsName: lb-cert.joonix.net
   lb:
     project: foo
     location: global
