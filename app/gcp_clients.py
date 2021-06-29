@@ -197,15 +197,15 @@ class CertificateAuthorityServiceClient:
                 },
                 'x509Config': {
                     'caOptions': {
-                        'isCa': false
+                        'isCa': False
                     },
                     'keyUsage': {
                         'baseKeyUsage': {
-                            'digitalSignature': true,
-                            'keyEncipherment': true,
+                            'digitalSignature': True,
+                            'keyEncipherment': True,
                         },
                         'extendedKeyUsage': {
-                            'serverAuth': true,
+                            'serverAuth': True,
                         },
                     },
                 }
